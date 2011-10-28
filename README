@@ -1,0 +1,32 @@
+=== goodcastle
+
+A script for deploying Wordpress sites. Not as clever or as sophisiticated as capistrano; not terrible.
+
+== Requirements
+
+You'll need Ruby, Rubygems, along with the erubis gem.
+goodcastle is designed for use on unix-based systems, and assumes the presence of rsync.
+goodcastle assumes that it exists in the root of a git repository containing an entire Wordpress site. Other version control tools are available; goodcastle does not use them.
+
+== Installation
+
+Copy deploy.rb and deploy/ to the Wordpress site/git repository on your local machine, and add them to git. goodcastle does not deploy itself to servers.
+
+== Usage
+
+Fill out deploy/deploy-config.yml with your details; there's an example version of this file in the repository. You need only configure advanced-cache if you have WP Super Cache installed. You can generate the content for the 'secret_keys' block here: https://api.wordpress.org/secret-key/1.1/salt
+
+The username is the user you would use to ssh in to your server, or to run rsync/scp to the location you wish to deploy to. I tend to create a deploy user for this purpose.
+
+When you're ready to deploy:
+
+ruby deploy.rb [branchname]
+
+If no branch is specified, goodcastle deploys out of master.
+
+Then, goodcastle:
+
+* generates a config file based on the parameters you've specified.
+* packages up a deployment and strips out anything that shouldn't be deployed
+* rsync's this to the server. (currently, goodcastle does not use --delete to do this)
+* tidies up after itself

@@ -1,0 +1,10 @@
+sitename: yoursite.com
+deploy_user: deploy
+deploy_server: servername
+deploy_path: /var/www/yoursite/html
+dbname: database_name
+dbuser: databser_user
+dbpwd: database_password
+siteurl: site_url_for_wordpress_config
+path_for_super_cache: /var/www/yoursite/html/wp-content/plugins/wp-super-cache/
+secure_keys_block: 
